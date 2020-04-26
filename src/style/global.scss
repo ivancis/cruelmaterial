@@ -1,9 +1,5 @@
 // global.scss
-@import "./theme.scss";
-* {
- box-sizing: border-box;
-}
-html, body {
- margin: 0;
- padding: 0;
-}
+@import './style/_reset.scss';
+@import './style/_mixins.scss';
+@import './style/_config.scss';
+@import './style/_default.scss';

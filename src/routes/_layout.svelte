@@ -6,6 +6,10 @@
 
 <style lang="scss" global>
 	@import "./style/global.scss";
+
+	main {
+		padding: $space--large;
+	}
 </style>
 
 

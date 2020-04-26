@@ -1,0 +1,221 @@
+html,
+body {
+    font-size: 100%;
+    min-height: 100%;
+}
+
+html {
+    ::-webkit-scrollbar {
+        width: 16px;
+        height: 16px;
+    }
+    ::-webkit-scrollbar-button {
+        width: 0;
+        height: 0;
+        display: none;
+    }
+    ::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: rgba(0,0,0,0.2);
+        -webkit-box-shadow: inset 1px 1px 0 rgba(0,0,0,0.10), inset 0 -1px 0 rgba(0,0,0,0.07);
+    }
+}
+
+body {
+    font: normal normal $font-size $font-family;
+    font-weight: $font-weight;
+    color: $_n800;
+    text-size-adjust: none; // prevent iphone text enlargement
+
+    &.no-scroll {
+        overflow: hidden;
+    }
+}
+
+* {
+    @include custom-scrollbars();
+
+    box-sizing: border-box;
+
+    &:after,
+    &:before {
+        box-sizing: border-box;
+    }
+}
+
+strong,
+b {
+    font-weight: 700;
+}
+
+em,
+i {
+    font-style: italic;
+}
+
+a {
+    outline: none;
+    text-decoration: underline;
+    color: inherit;
+    cursor: pointer;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:hover,
+    &:focus,
+    &:active {
+        outline: none;
+    }
+}
+
+input,
+textarea,
+button,
+select {
+    font-family: $font-family;
+    font-size: 100%;
+    color: inherit;
+    line-height: 1;
+}
+
+// input date top space webkit
+input[type="date"]::-webkit-date-and-time-value {
+    margin-top: 6px;
+}
+
+// input date right space webkit
+input[type="date"]::-webkit-calendar-picker-indicator {
+    margin-right: 30px;
+}
+
+// input date remove spin/clear icon webkit
+input[type="date"]::-webkit-clear-button,
+input[type="date"]::-webkit-inner-spin-button {
+    margin: 0;
+    opacity: 0;
+}
+
+// input date picker icon webkit
+input[type="date"]::-webkit-calendar-picker-indicator {
+    $_size: 12px;
+
+    width: $_size;
+    height: $_size;
+    color: rgba($light, 1);
+
+    &:hover {
+        background-color: rgba($light, 0);
+    }
+
+    &:active {
+        color: rgba($light, 1);
+    }
+}
+
+// input clear ie remove icon
+input::-ms-clear {
+    display: none;
+}
+
+// show password remove icon ie
+input::-ms-reveal {
+    display: none;
+}
+
+// input number remove spinner webkit
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+// input number remove spinner firefox
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+// input password autofill remove icon webkit
+::-webkit-credentials-auto-fill-button {
+    background: transparent;
+}
+
+// input contact autofill remove icon webkit
+::-webkit-contacts-auto-fill-button {
+    background: transparent;
+}
+
+// input password capslock remove icon safari
+::-webkit-caps-lock-indicator {
+    content: none;
+}
+
+video {
+    background-color: rgba($dark, 0);
+}
+
+div,
+label {
+
+    &:focus {
+        outline: none;
+    }
+}
+
+label {
+    cursor: inherit;
+}
+
+// styles for firefox only
+@-moz-document url-prefix() {
+
+    img {
+        color: rgba($light, 0); // alt remove firefox
+    }
+}
+
+// ios tap highlight remove
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: rgba($dark, 0);
+}
+
+h1 {
+    @include set-font-size(48px);
+    font-weight: $font-weight--bold;
+}
+h2 {
+    @include set-font-size(30px);
+    font-weight: $font-weight--bold;
+}
+h3 {
+    @include set-font-size(18px);
+    font-weight: $font-weight--bold;
+}
+h4 {
+    @include set-font-size(16px);
+    font-weight: $font-weight--bold;
+}
+h5 {
+    @include set-font-size(14px);
+}
+h6 {
+    @include set-font-size(12px);
+}
+
+svg {
+    width: inherit;
+    height: inherit;
+    fill: currentColor;
+    stroke: inherit;
+    stroke-width: inherit;
+}
