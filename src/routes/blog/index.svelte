@@ -1,4 +1,5 @@
-<script context="module">
+<script
+context="module">
 	export function preload({ params, query }) {
 		return this.fetch(`blog.json`).then(r => r.json()).then(posts => {
 			return { posts };
@@ -10,10 +11,37 @@
 	export let posts;
 </script>
 
-<style>
+<style lang="scss">
+	@import "./style/_config.scss";
 	ul {
-		margin: 0 0 1em 0;
-		line-height: 1.5;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		max-width: 80vh;
+		grid-gap: $space;
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		@include ratio(1,1);
+		background: $_n100;
+		border-radius: $space--x-small;
+	}
+
+	a {
+		display: grid;
+		place-content: flex-end;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		text-decoration: none;
+		padding: $space--large;
+	}
+
+	label {
+		color: $light;
 	}
 </style>
 
@@ -21,14 +49,17 @@
 	<title>Blog</title>
 </svelte:head>
 
-<h1>Recent posts</h1>
-
 <ul>
 	{#each posts as post}
-		<!-- we're using the non-standard `rel=prefetch` attribute to
-				tell Sapper to load the data for the page as soon as
-				the user hovers over the link or taps it, instead of
-				waiting for the 'click' event -->
-		<li><a rel='prefetch' href='blog/{post.slug}'>{post.title}</a></li>
+		<li>
+			<a
+				rel='prefetch'
+				href='blog/{post.slug}'
+			>
+				<label>
+					{post.title}
+				</label>
+			</a>
+		</li>
 	{/each}
 </ul>

@@ -17,21 +17,32 @@
 	export let post;
 </script>
 
-<style>
-	/*
-		By default, CSS is locally scoped to the component,
-		and any unused styles are dead-code-eliminated.
-		In this page, Svelte can't know which elements are
-		going to appear inside the {{{post.html}}} block,
-		so we have to use the :global(...) modifier to target
-		all elements inside .content
-	*/
-	.content :global(h2) {
+<style lang="scss">
+	@import "./style/_config.scss";
+	.post {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: $space--x-large;
+		align-items: flex-start;
+		max-width: $content-size-medium;
+	}
+
+	.gallery {
+		@include ratio(1,1);
+		background: $_n100;
+		border-radius: $space--x-small;
+	}
+	.content {
+		display: grid;
+		grid-gap: $space;
+	}
+
+	.markdown :global(h2) {
 		font-size: 1.4em;
 		font-weight: 500;
 	}
 
-	.content :global(pre) {
+	.markdown :global(pre) {
 		background-color: #f9f9f9;
 		box-shadow: inset 1px 1px 5px rgba(0,0,0,0.05);
 		padding: 0.5em;
@@ -39,17 +50,21 @@
 		overflow-x: auto;
 	}
 
-	.content :global(pre) :global(code) {
+	.markdown :global(pre) :global(code) {
 		background-color: transparent;
 		padding: 0;
 	}
 
-	.content :global(ul) {
+	.markdown :global(ul) {
 		line-height: 1.5;
 	}
 
-	.content :global(li) {
+	.markdown :global(li) {
 		margin: 0 0 0.5em 0;
+	}
+
+	.markdown :global(p) {
+		color: red;
 	}
 </style>
 
@@ -57,8 +72,16 @@
 	<title>{post.title}</title>
 </svelte:head>
 
-<h1>{post.title}</h1>
-
-<div class='content'>
-	{@html post.html}
+<div class="post">
+	<div class='gallery'>
+	</div>
+	<div class='content'>
+		<h1>{post.title}</h1>
+		<div class='markdown'>
+			{@html post.html}
+		</div>
+		<div class="action">
+			hello action
+		</div>
+	</div>
 </div>
