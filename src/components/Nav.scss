@@ -1,5 +1,11 @@
 @import "./style/_config.scss";
 
+.logo {
+    width: $space--large;
+    height: $space--large;
+    background-color: black;
+}
+
 nav {
     border-bottom: 1px solid rgba(255,62,0,0.1);
     font-weight: 300;
